@@ -59,7 +59,7 @@ var rolelist_presets = {
 					 "Random Coven",
 					 "Random Coven",
 					 "Neutral Killing",
-					 "Neutral Evil"],
+					 "Neutral Evil"]
 };
 $(function() {
 	$("#rolelist-presets").append('<option selected>');
