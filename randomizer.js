@@ -46,6 +46,7 @@ $(function() {
 		var coven_roles_enabled = $("#coven-on").prop("checked");
 		var tg_ar_roles_enabled = $("#ar-on").prop("checked");
 		var tg_vamp_overhaul_roles_enabled = $("#vo-on").prop("checked");
+		var tg_florae_roles_enabled = $("#florae-on").prop("checked");
 		var faction_limit = $("#faction-limit").val();
 
 		role_categories = $.extend({}, role_meta_categories);
@@ -112,6 +113,9 @@ $(function() {
 					delete included_roles[role];
 				}
 				if(typeof all_roles[role].tg_vamp_overhaul !== 'undefined' && all_roles[role].tg_vamp_overhaul !== tg_vamp_overhaul_roles_enabled) {
+					delete included_roles[role];
+				}
+				if (typeof all_roles[role].tg_florae !== 'undefined' && all_roles[role].tg_florae !== tg_florae_roles_enabled) {
 					delete included_roles[role];
 				}
 			}
