@@ -54,7 +54,6 @@ var all_roles_base = {
 	"Nelapsi": { limit: 6, tg_vamp_overhaul: true, category: "Vampire Manipulation" },
 	"Nettle": { limit: 6, tg_florae: true, category: "Florae Killing" },
 	"Nightshade": { limit: 6, tg_florae: true, category: "Florae Support" },
-	"Occultist": {limit: 6, tg_vamp_overhaul: true, category: "Town Investigative"},
 	"Patient": { limit: 1, tg_ar: true, category: "Neutral Killing" },
 	"Phlox": { limit: 6, tg_florae: true, category: "Florae Support" },
 	"Pirate": {limit: 1, coven: true, category: "Neutral Chaos"},
