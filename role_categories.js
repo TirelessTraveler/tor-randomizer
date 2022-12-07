@@ -4,7 +4,8 @@ var role_meta_categories = {
 	"Random Mafia": ["Mafia Support", "Mafia Deception", "Mafia Killing"],
 	"Random Coven": ["Coven Evil"],
 	"Random Vampire": ["Vampire Killing", "Vampire Conversion", "Vampire Support", "Vampire Manipulation"],
-	"Any": ["Random Town", "Random Neutral", "Random Mafia", "Random Coven", "Random Vampire"],
+	"Random Florae": ["Florae Investigative", "Florae Protective", "Florae Killing", "Florae Support"],
+	"Any": ["Random Town", "Random Neutral", "Random Mafia", "Random Coven", "Random Vampire", "Random Florae"],
 };
 
 var case_lookup_base = {};
