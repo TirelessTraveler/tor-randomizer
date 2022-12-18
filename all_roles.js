@@ -40,7 +40,7 @@ var all_roles_base = {
 	"Janitor": {limit: 6, category: "Mafia Deception"},
 	"Jester": {limit: 6, category: "Neutral Evil"},
 	"Juggernaut": {limit: 1, coven: true, category: "Neutral Killing"},
-	"Lapidarist": { limit: 1, coven: true, category: "Coven Evil" },
+	"Lapidarist": { limit: 1, coven: true, tg_ar: true, category: "Coven Evil" },
 	"Lavender": { limit: 6, tg_florae: true, category: "Florae Protective" },
 	"Lily": { limit: 6, tg_florae: true, category: "Florae Protective" },
 	"Lookout": {limit: 6, category: "Town Investigative"},
