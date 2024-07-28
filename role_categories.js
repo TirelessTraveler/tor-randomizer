@@ -1,31 +1,53 @@
-var case_lookup_base = {};
-for(var category in role_meta_categories) {
-	role_meta_categories[category] = role_meta_categories[category].map(function(x) {
-		var acronym = x.replace(/[^A-Z]/g, "");
-		if(acronym && acronym.length < 5 && !role_meta_categories[acronym]) {
-			role_meta_categories[acronym] = [x];
-			return acronym;
-		}
-		return x;
-	});
-}
-for(var x in role_meta_categories) {
-	case_lookup_base[x.toUpperCase()] = x;
-}
+import re
+from collections import defaultdict
 
-$(function() {
-	$("#categories").val(Object.entries(role_meta_categories).map(function(entries) {
-		return entries[0]+": "+entries[1].join(", ");
-	}).join("\n"));
-	$("#categories").change(function() {
-		var lines = $("#categories").val().split(/\r\n|\r|\n/)
-		role_meta_categories = Object.fromEntries(lines.map(function(line) {
-			var parts = line.split(":");
-			return [parts[0].trim(), parts.slice(1).join(":").split(",").map(s=>s.trim()).filter(s=>s)];
-		}));
-		case_lookup_base = {};
-		for(var x in role_meta_categories) {
-			case_lookup_base[x.toUpperCase()] = x;
-		}
-	});
-});
+case_lookup_base = {}
+role_meta_categories = {}  # Assuming role_meta_categories is defined somewhere
+
+for category in role_meta_categories:
+    role_meta_categories[category] = [
+        (acronym := re.sub(r'[^A-Z]', '', x)) if acronym and len(acronym) < 5 and acronym not in role_meta_categories else x
+        for x in role_meta_categories[category]
+    ]
+    for x in role_meta_categories[category]:
+        if isinstance(x, str) and x.isupper() and len(x) < 5:
+            role_meta_categories[x] = [x]
+
+for x in role_meta_categories:
+    case_lookup_base[x.upper()] = x
+
+def update_categories():
+    categories_val = "\n".join(
+        f"{key}: {', '.join(values)}"
+        for key, values in role_meta_categories.items()
+    )
+    # Assuming a function to set the value of an element with id 'categories'
+    set_element_value("#categories", categories_val)
+
+def on_categories_change():
+    lines = get_element_value("#categories").splitlines()
+    global role_meta_categories
+    role_meta_categories = {
+        parts[0].strip(): [s.strip() for s in ":".join(parts[1:]).split(",") if s.strip()]
+        for line in lines if (parts := line.split(":"))
+    }
+    global case_lookup_base
+    case_lookup_base = {x.upper(): x for x in role_meta_categories}
+
+# Assuming functions to get and set the value of an element with id 'categories'
+def get_element_value(element_id):
+    # Placeholder for actual implementation
+    pass
+
+def set_element_value(element_id, value):
+    # Placeholder for actual implementation
+    pass
+
+# Assuming a function to bind an event handler to an element with id 'categories'
+def bind_event_handler(element_id, event, handler):
+    # Placeholder for actual implementation
+    pass
+
+# Initial setup
+update_categories()
+bind_event_handler("#categories", "change", on_categories_change)
