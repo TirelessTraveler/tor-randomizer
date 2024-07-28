@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Testing Grounds Rolelist Randomizer</title>
+		<title>Tears of Rebellion Rolelist Randomizer</title>
 		<link rel="stylesheet" href="style.css?version=1"/>
 		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 		<script src="all_roles.js?version=4"></script>
@@ -20,13 +20,9 @@
 				Test Roles:
 				<label>Name:<br><textarea id="test-role-names" rows="6" cols="12"></textarea></label>
 				<label>Alignment:<br><textarea id="test-role-alignments" rows="6" cols="12"></textarea></label>
-				<label><span title="Maximum number of this role that can appear in-game (6 is the default)">Limit:</span><br><textarea id="test-role-limits" rows="6" cols="2"></textarea></label>
+				<label><span title="Maximum number of this role that can appear in-game">Limit:</span><br><textarea id="test-role-limits" rows="6" cols="2"></textarea></label>
 				<label><span title="Adjust the probability of this role rolling (1 is the default)">Weight:</span><br><textarea id="test-role-weights" rows="6" cols="8"></textarea></label>
 			</div>
-			<label><input type="checkbox" id="coven-on">Enable Coven Roles</label>
-			<label title="except Vampire Overhaul roles"><input type="checkbox" id="ar-on">Enable TG Accepted Roles</label>
-			<label><input type="checkbox" id="vo-on">Enable Vampire Overhaul Roles</label>
-			<label><input type="checkbox" id="florae-on">Enable Florae Roles</label>
 			<label><span title="The maximum number of roles of each informed minority faction that can appear in the game">Faction Limit:</span> <input type="number" value="4" min="0" max="9" size="1" id="faction-limit"><label>
 		</div>
 		<div class="rolelist">
