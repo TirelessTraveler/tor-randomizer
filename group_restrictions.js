@@ -1,30 +1,3 @@
-var group_restrictions = [
-	{
-		grouping: ["Mayor", "Judge"],
-		restrictions: ["Exclusive"],
-	},
-	{
-		grouping: ["RM"],
-		restrictions: ["Faction", "Leader Godfather", "Leader Mafioso"],
-	},
-	{
-		grouping: ["RC"],
-		restrictions: ["Faction"],
-	},
-	{
-		grouping: ["VK"],
-		restrictions: ["Exclusive"],
-	},
-	{
-		grouping: ["VC"],
-		restrictions: ["Exclusive"],
-	},
-	{
-		grouping: ["RV"],
-		restrictions: ["Faction", "Leader VK"],
-	},
-];
-
 $(function() {
 	$("#group_restrictions").val(group_restrictions.map(function(entry) {
 		return entry.grouping.join(", ")+": "+entry.restrictions.join(", ");
