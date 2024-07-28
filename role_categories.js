@@ -1,13 +1,3 @@
-var role_meta_categories = {
-	"Random Town": ["Town Investigative", "Town Protective", "Town Killing", "Town Support"],
-	"Random Neutral": ["Neutral Benign", "Neutral Evil", "Neutral Killing", "Neutral Chaos"],
-	"Random Mafia": ["Mafia Support", "Mafia Deception", "Mafia Killing"],
-	"Random Coven": ["Coven Evil"],
-	"Random Vampire": ["Vampire Killing", "Vampire Conversion", "Vampire Support", "Vampire Manipulation"],
-	"Random Florae": ["Florae Investigative", "Florae Protective", "Florae Killing", "Florae Support"],
-	"Any": ["Random Town", "Random Neutral", "Random Mafia", "Random Coven", "Random Vampire", "Random Florae"],
-};
-
 var case_lookup_base = {};
 for(var category in role_meta_categories) {
 	role_meta_categories[category] = role_meta_categories[category].map(function(x) {
