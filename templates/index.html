@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tears of Rebellion Rolelist Randomizer</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJ+HG0Xqbdrz9d8fqXc+5Em9zIGTkp5yA73Kg=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="categories">
+        <label>Category Groupings:<br><textarea id="categories" rows="30" cols="30"></textarea></label>
+        <label>Group Restrictions:<br><textarea id="group_restrictions" rows="30" cols="30"></textarea></label>
+    </div>
+    <div class="options">
+        <div class="test-roles">
+            Test Roles:
+            <label>Name:<br><textarea id="test-role-names" rows="6" cols="12"></textarea></label>
+            <label>Alignment:<br><textarea id="test-role-alignments" rows="6" cols="12"></textarea></label>
+            <label><span title="Maximum number of this role that can appear in-game">Limit:</span><br><textarea id="test-role-limits" rows="6" cols="2"></textarea></label>
+            <label><span title="Adjust the probability of this role rolling (1 is the default)">Weight:</span><br><textarea id="test-role-weights" rows="6" cols="8"></textarea></label>
+        </div>
+        <label><span title="The maximum number of roles of each informed minority faction that can appear in the game">Faction Limit:</span> <input type="number" value="4" min="0" max="9" size="1" id="faction-limit"><label>
+    </div>
+    <div class="rolelist">
+        <label>Rolelist:<br><textarea id="rolelist" rows="15" cols="20"></textarea></label>
+        <label>Presets: <select id="rolelist-presets"></select></label>
+    </div>
+    <div class="playerlist">
+        <label><span title="(Optional) One player name per line.  Missing players will be filled in with Player 1, Player 2, etc.">Player Names:</span><br><textarea id="playerlist" rows="15" cols="20"></textarea></label>
+    </div>
+    <div class="results">
+        <label>Results:<br><textarea id="results" rows="15" cols="25"></textarea></label>
+    </div>
+    <button id="roll-button">Roll</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#roll-button').click(function() {
+                let data = {
+                    categories: $('#categories').val(),
+                    group_restrictions: $('#group_restrictions').val(),
+                    test_role_names: $('#test-role-names').val(),
+                    test_role_alignments: $('#test-role-alignments').val(),
+                    test_role_limits: $('#test-role-limits').val(),
+                    test_role_weights: $('#test-role-weights').val(),
+                    faction_limit: $('#faction-limit').val(),
+                    rolelist: $('#rolelist').val(),
+                    playerlist: $('#playerlist').val()
+                };
+                $.ajax({
+                    url: 'https://your-app-name.herokuapp.com/roll', // Update with your Heroku app URL
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(response) {
+                        $('#results').val(response.results);
+                    }
+                });
+            });
+
+            const rolelistPresets = {
+                "All Any": ["Any"],
+                "Uprising Ranked": ["Cult Order", "Cult Investigative", "Cult Guardian", "Random Cult", "Random Cult", "Random Cult", "Common Cult", "Random Uprising", "Random Uprising", "Rogue Outcast"],
+                "Ghosts Ranked": ["Cult Order", "Cult Investigative", "Cult Support", "Random Cult", "Random Cult", "Random Cult", "Common Cult", "Ghost Killing", "Random Ghost", "Random Ghost"],
+                "Rogues Ranked": ["Cult Order", "Cult Investigative", "Cult Guardian", "Random Cult", "Random Cult", "Random Cult", "Cult Negative", "Rogue Killing", "Rogue Outcast", "Rogue Outcast"],
+                "Saints Ranked": ["Cult Order", "Cult Investigative", "Cult Fabled", "Random Cult", "Random Cult", "Random Cult", "Random Cult", "Cult Negative", "Saint Vessel", "Rogue Outcast"]
+            };
+
+            $.each(rolelistPresets, function(key, value) {
+                $('#rolelist-presets').append($('<option></option>').attr('value', key).text(key));
+            });
+
+            $('#rolelist-presets').change(function() {
+                const preset = $(this).val();
+                if (preset in rolelistPresets) {
+                    $('#rolelist').val(rolelistPresets[preset].join('\n'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>
